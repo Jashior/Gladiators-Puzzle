@@ -1,0 +1,144 @@
+.container {
+  min-width: 350px;
+}
+
+.top-container {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.center-container {
+  text-align: center;
+  justify-content: center;
+}
+
+.text-container {
+  margin-bottom: 1rem;
+
+}
+
+.reset-first-button,
+.start-first-button {
+  margin-top: 0.5rem;
+  width: 5rem;
+}
+
+.battle-button-container {
+  margin-top: 0.5rem;
+}
+
+/* Stops the button unequally overflowing to the right on smaller screens*/
+.battle-button {
+  max-width: 100%;
+}
+
+.card {
+  text-align: center;
+  margin-bottom: 1rem;
+  border: 1px solid var(--color-primary);
+  background-color: var(--color-offwhite);
+}
+
+.first-glad {
+  animation: first-glad-anim 0.5s ease-in forwards;
+}
+
+
+/* Card slight glow effect */
+@keyframes first-glad-anim {
+  from {
+    border: 1px solid var(--color-primary);
+    box-shadow: none;
+    background-color: var(--color-offwhite);
+  }
+
+  to {
+    background: var(--color-background);
+    border: 1px solid var(--color-warn);
+    box-shadow: 0 0 1px 1px var(--color-warn);
+  }
+}
+
+@keyframes first-glad-anim-reverse {
+  from {
+    background: var(--color-background);
+    border: 1px solid var(--color-warn);
+    box-shadow: 0 0 1px 1px var(--color-warn);
+  }
+
+  to {
+    border: 1px solid var(--color-primary);
+    box-shadow: none;
+    background-color: var(--color-offwhite);
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.connector {
+  background-color: var(--color-warn);
+  width: 200%;
+  height: 0.2rem;
+  position: relative;
+  top: 2.5rem;
+  left: -1.5rem;
+}
+
+
+
+/*Drag/dropping cursor*/
+.grabbable {
+  cursor: move;
+  /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+/* (Optional) Apply a "closed-hand" cursor during drag operation. */
+.grabbable:active {
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+
+/* Drag/Dropping */
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-preview .first-glad {
+  animation: first-glad-anim-reverse 0.5s ease-in;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.gladiator-list.cdk-drop-list-dragging .card:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* might interfere with drag on mobile firefox? */
+.gladiator-list.cdk-drop-list-dragging .first-glad:not(.cdk-drag-placeholder) {
+
+  animation: first-glad-anim-reverse 0.5s ease-in;
+}
+
+.placeholder {
+  min-height: 24em;
+}
+
+.first-game-container {
+  min-height: 24em;
+}
