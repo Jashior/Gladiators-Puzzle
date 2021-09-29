@@ -2,6 +2,7 @@
   <div class="row top-container">
     <div class="col"></div>
     <div class="col-4">
+      <br />
       <button mat-raised-button color="primary" routerLink="/home">Home</button>
     </div>
     <div class="col"></div>
@@ -9,7 +10,10 @@
 
   <div class="row center-container">
     <div class="col"></div>
-    <h1 class="col-lg-4 col-12">Title here</h1>
+    <h1 class="col-lg-4 col-12">
+      <hr />
+      Title here
+    </h1>
     <div class="col"></div>
   </div>
 
@@ -51,7 +55,8 @@
           <hr />
           <h2><b>Example Game</b></h2>
           <small
-            >Drag gladiators vertically to rearrange the order of fights</small
+            >Randomly generated levels for each gladiator. Drag gladiators
+            vertically to rearrange the order of fights</small
           >
           <br />
 
@@ -86,7 +91,9 @@
       >
         <div class="col-md-1"></div>
         <div class="col-4">
-          <div class="center-container">Player A</div>
+          <div class="center-container text-container">
+            <b>Player A</b>
+          </div>
           <div
             cdkDropList
             [cdkDropListData]="myGlads"
@@ -100,25 +107,66 @@
             >
               <div
                 class="card grabbable glow"
-                [ngClass]="{ 'first-glad': i == 0 }"
+                [ngClass]="{
+                  'first-glad': i == 0,
+                  'winning-glad': i == 0 && firstGameFightWinner == 'A'
+                }"
               >
-                🤹‍♂️ <br />
-                Gladiator <br />
                 Level {{ glad }}
+                <br />
+                Gladiator
+                <br />
+                🤹‍♂️
+                <br />
+
+                <div *ngIf="i == 0">
+                  {{ percentWinDisplay(0) | number: "1.1-1" }}%
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="col-4 col-sm-2 center-container">
-          <div class="center-container">Fight</div>
-          <div class="connector"></div>
-          <div class="battle-button-container">
-            <button mat-fab class="battle-button" color="primary">⚔️</button>
+        <div class="col-4 col-sm-2 col-xs-1 center-container">
+          <div
+            class="center-container status-container"
+            color="warn"
+            *ngIf="firstGameState == ''"
+          >
+            <b>Fight!</b>
+          </div>
+          <div
+            class="center-container status-container"
+            color="warn"
+            *ngIf="firstGameState == 'WIN'"
+          >
+            <b> A Wins!</b>
+          </div>
+          <div
+            class="center-container status-container"
+            color="warn"
+            *ngIf="firstGameState == 'LOSS'"
+          >
+            <b>B Wins!</b>
+          </div>
+
+          <div class="connector" [hidden]="firstGameState.length > 0"></div>
+          <div
+            class="battle-button-container"
+            [hidden]="firstGameState.length > 0"
+          >
+            <button
+              mat-fab
+              class="battle-button"
+              (click)="initiateFightSequence()"
+              color="primary"
+            >
+              ⚔️
+            </button>
           </div>
         </div>
         <div class="col-4">
-          <div class="center-container">Player B</div>
+          <div class="center-container text-container"><b>Player B</b></div>
           <div
             cdkDropList
             [cdkDropListData]="enemyGlads"
@@ -130,10 +178,20 @@
               cdkDragLockAxis="y"
               cdkDrag
             >
-              <div class="card grabbable" [ngClass]="{ 'first-glad': i == 0 }">
-                🤹‍♂️ <br />
-                Gladiator <br />
+              <div
+                class="card grabbable"
+                [ngClass]="{
+                  'first-glad': i == 0,
+                  'winning-glad': i == 0 && firstGameFightWinner == 'B'
+                }"
+              >
                 Level {{ glad }}
+                <br />
+                Gladiator <br />
+                🤹‍♂️ <br />
+                <div *ngIf="i == 0">
+                  {{ percentWinDisplay(1) | number: "1.1-1" }}%
+                </div>
               </div>
             </div>
           </div>
@@ -145,11 +203,137 @@
   </div>
 
   <div class="row center-container">
+    <div class="col"></div>
+    <h2 class="col-lg-4 col-12">
+      <b
+        ><hr />
+        Ordering Gladiators</b
+      >
+    </h2>
+    <div class="col"></div>
+  </div>
+
+  <div class="row text-container">
+    <div class="col"></div>
+    <div class="col-lg-6 col-md-8">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iure
+        officiis dolor suscipit non placeat error cum, eius fuga animi quasi
+        possimus veritatis et maxime quia autem beatae laboriosam provident.
+        Lorem ipsum
+      </p>
+      <p>
+        Let's assume you (Player A) have a set of gladiators with levels [2, 4,
+        8, 16]. Player B has an identical set of gladiators. Have a go at
+        checking a given ordering simulated over a large number of games
+      </p>
+    </div>
+    <div class="col"></div>
+  </div>
+
+  <div class="row battle-zone">
     <div class="col-sm"></div>
     <div class="col-lg-6 col-md-8">
-      <hr />
-      <h1>Ordering</h1>
+      <div class="row first-game-container center-container">
+        <div class="col-md-1"></div>
+        <div class="col-4">
+          <div class="center-container text-container">
+            <b>Player A</b>
+          </div>
+          <div
+            cdkDropList
+            [cdkDropListData]="simulatedMyGlads"
+            class="gladiator-list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div
+              *ngFor="let glad of simulatedMyGlads; let i = index"
+              cdkDragLockAxis="y"
+              cdkDrag
+            >
+              <div
+                class="card grabbable glow"
+                [ngClass]="{
+                  'first-glad': i == 0
+                }"
+              >
+                Level {{ glad }}
+                <br />
+                Gladiator
+                <br />
+                🤹‍♂️
+                <br />
+
+                <div *ngIf="i == 0">
+                  {{ percentWinDisplaySimulated(0) | number: "1.1-1" }}%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-2 col-sm-1 center-container"></div>
+        <div class="col-4">
+          <div class="center-container text-container">
+            <b>Player B</b>
+          </div>
+          <div
+            cdkDropList
+            [cdkDropListData]="simulatedEnemyGlads"
+            class="gladiator-list"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div
+              *ngFor="let glad of simulatedEnemyGlads; let i = index"
+              cdkDragLockAxis="y"
+              cdkDrag
+            >
+              <div
+                class="card grabbable"
+                [ngClass]="{
+                  'first-glad': i == 0
+                }"
+              >
+                Level {{ glad }}
+                <br />
+                Gladiator <br />
+                🤹‍♂️ <br />
+                <div *ngIf="i == 0">
+                  {{ percentWinDisplaySimulated(1) | number: "1.1-1" }}%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-lg-6 col-md-8">
+          <div class="row center-container">
+            <div class="col"></div>
+            <div class="col-lg-10 col-12">
+              <br />
+              <!-- <p><b>Simulate</b></p> -->
+              <p>Simulate the above ordering</p>
+              <button
+                mat-raised-button
+                color="primary"
+                class="simulation-button"
+                (click)="initiateSimulation()"
+              >
+                Simulate
+              </button>
+            </div>
+            <div class="col"></div>
+          </div>
+        </div>
+        <div class="col-sm"></div>
+      </div>
     </div>
     <div class="col-sm"></div>
   </div>
 </div>
+
+<!-- [@toggleBox]="firstGameBoxOn" -->

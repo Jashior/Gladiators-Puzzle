@@ -16,11 +16,21 @@
   margin-bottom: 1rem;
 }
 
-.reset-first-button,
-.start-first-button {
-  margin-top: 0.5rem;
-  width: 5rem;
+.status-container {
+  margin-bottom: 1rem;
 }
+
+.reset-first-button,
+.start-first-button,
+.simulation-button {
+  margin-top: 0.5rem;
+  width: 6rem;
+  /* text-align: center;
+  margin: auto; */
+}
+
+
+
 
 .battle-button-container {
   margin-top: 0.5rem;
@@ -36,45 +46,64 @@
   margin-bottom: 1rem;
   border: 1px solid var(--color-primary);
   background-color: var(--color-offwhite);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+  ;
 }
 
 .first-glad {
   animation: first-glad-anim 0.5s ease-in forwards;
 }
 
+.winning-glad {
+  animation: winning-glad-anim 1s ease-in;
+}
 
 /* Card slight glow effect */
 @keyframes first-glad-anim {
   from {
     border: 1px solid var(--color-primary);
-    box-shadow: none;
     background-color: var(--color-offwhite);
   }
 
   to {
     background: var(--color-background);
     border: 1px solid var(--color-warn);
-    box-shadow: 0 0 1px 1px var(--color-warn);
   }
 }
 
+/* Reversed glow effect */
 @keyframes first-glad-anim-reverse {
   from {
     background: var(--color-background);
     border: 1px solid var(--color-warn);
-    box-shadow: 0 0 1px 1px var(--color-warn);
   }
 
   to {
     border: 1px solid var(--color-primary);
-    box-shadow: none;
     background-color: var(--color-offwhite);
   }
+}
+
+/* Winning flash of green */
+@keyframes winning-glad-anim {
+  0% {
+    background: var(--color-background);
+    border: 1px solid var(--color-warn);
+
+  }
+
+  50% {
+    background-color: var(--color-success);
+    border: 1px solid var(--color-primary);
+  }
+
+  100% {}
 }
 
 .hidden {
   visibility: hidden;
 }
+
 
 .connector {
   background-color: var(--color-warn);
@@ -129,15 +158,17 @@
 }
 
 /* might interfere with drag on mobile firefox? */
-.gladiator-list.cdk-drop-list-dragging .first-glad:not(.cdk-drag-placeholder) {
+/* .gladiator-list.cdk-drop-list-dragging .first-glad:not(.cdk-drag-placeholder) {
 
   animation: first-glad-anim-reverse 0.5s ease-in;
-}
+} */
 
+
+/* Creates space for game if needed beforehand? */
 .placeholder {
-  min-height: 24em;
+  /* min-height: 26.5em; */
 }
 
 .first-game-container {
-  min-height: 24em;
+  min-height: 26.5em;
 }

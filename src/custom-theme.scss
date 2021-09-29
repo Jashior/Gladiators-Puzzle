@@ -40,6 +40,7 @@ $accent: map-get($blog-theme, accent);
   --color-accent: #{mat-color($blog-accent)};
   --color-warn: #{mat-color($blog-warn)};
   --color-background: #F5EBDC;
+  --color-success: #accf67;
   --color-offwhite: rgb(252, 252, 252)
 }
 
