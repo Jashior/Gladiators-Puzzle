@@ -14,7 +14,7 @@
 $blog-primary: mat-palette($mat-indigo);
 $blog-accent: mat-palette($mat-pink, A200, A100, A400);
 // The warn palette is optional (defaults to red).
-$blog-warn: mat-palette($mat-red);
+$blog-warn: mat-palette($mat-red, 400);
 
 
 // Create the theme object. A theme consists of configurations for individual
@@ -64,10 +64,9 @@ $my-alternate-theme: mat-dark-theme($my-alternate-primary, $my-alternate-accent,
 // ----------------- Typography ----------------- // 
 // Custom typography config
 $heading-font-family: "monospace";
-$custom-typography: mat-typography-config($font-family: 'monospace, Courier New',
+$custom-typography: mat-typography-config($font-family: 'Roboto Mono, Roboto, monospace, Courier New',
   $headline: mat-typography-level(32px, 48px, 700, $font-family: $heading-font-family),
-  $display-2: mat-typography-level(32px, 48px, 700, $font-family: $heading-font-family),
-  $body-1: mat-typography-level(16px, 24px, 500, ));
+  $display-2: mat-typography-level(32px, 48px, 700, $font-family: $heading-font-family));
 // Override typography for all Angular Material, including mat-base-typography and all components.
 @include angular-material-typography($custom-typography);
 // ---------------------------------------------- // 

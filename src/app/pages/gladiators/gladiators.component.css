@@ -1,3 +1,7 @@
+.primary {
+  color: var(--color-primary)
+}
+
 .container {
   min-width: 350px;
 }
@@ -10,6 +14,7 @@
 .center-container {
   text-align: center;
   justify-content: center;
+  position: relative;
 }
 
 .text-container {
@@ -20,6 +25,10 @@
   margin-bottom: 1rem;
 }
 
+.simulate-container {
+  height: 500px;
+}
+
 .reset-first-button,
 .start-first-button,
 .simulation-button {
@@ -27,6 +36,10 @@
   width: 6rem;
   /* text-align: center;
   margin: auto; */
+}
+
+.reset-first-button {
+  margin-bottom: 1rem;
 }
 
 
@@ -40,6 +53,8 @@
 .battle-button {
   max-width: 100%;
 }
+
+
 
 .card {
   text-align: center;
@@ -55,18 +70,23 @@
 }
 
 .winning-glad {
-  animation: winning-glad-anim 1s ease-in;
+  animation: winning-glad-anim 1.5s ease-in;
 }
+
+.losing-glad {
+  animation: losing-glad-anim 1.5s ease-in;
+}
+
 
 /* Card slight glow effect */
 @keyframes first-glad-anim {
   from {
     border: 1px solid var(--color-primary);
-    background-color: var(--color-offwhite);
+    /* background-color: var(--color-offwhite); */
   }
 
   to {
-    background: var(--color-background);
+    /* background-color: var(--color-background); */
     border: 1px solid var(--color-warn);
   }
 }
@@ -74,13 +94,11 @@
 /* Reversed glow effect */
 @keyframes first-glad-anim-reverse {
   from {
-    background: var(--color-background);
     border: 1px solid var(--color-warn);
   }
 
   to {
     border: 1px solid var(--color-primary);
-    background-color: var(--color-offwhite);
   }
 }
 
@@ -100,19 +118,96 @@
   100% {}
 }
 
+
+/* Winning flash of green */
+@keyframes losing-glad-anim {
+  0% {
+    background: var(--color-background);
+    border: 1px solid var(--color-warn);
+
+  }
+
+  50% {
+    background-color: var(--color-warn);
+    border: 1px solid var(--color-primary);
+    opacity: 50%;
+  }
+
+  100% {
+    background-color: var(--color-warn);
+    border: 1px solid var(--color-primary);
+    opacity: 0%;
+  }
+}
+
 .hidden {
   visibility: hidden;
 }
 
 
+
 .connector {
   background-color: var(--color-warn);
-  width: 200%;
   height: 0.2rem;
-  position: relative;
-  top: 2.5rem;
-  left: -1.5rem;
+  width: 100%;
+  position: absolute;
+
+  top: 17.5%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+.connector.inactive {
+  display: none;
+}
+
+
+
+
+
+
+.vert-connector-container {
+  position: relative;
+}
+
+
+.connector-vertical {
+  position: absolute;
+  width: 0.5em;
+  height: 20em;
+  background-color: var(--color-primary);
+
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 1em;
+}
+
+.connector-vertical:before {
+  content: "";
+  width: 1.2em;
+  height: 1.2em;
+  background: var(--color-primary);
+  border-radius: 50%;
+  position: absolute;
+  margin-left: -0.55em;
+}
+
+.connector-vertical:after {
+  content: "";
+  width: 1.2em;
+  height: 1.2em;
+  background: var(--color-primary);
+  border-radius: 50%;
+  position: absolute;
+  margin-top: 19em;
+  margin-left: -0.55em;
+}
+
+
 
 
 
@@ -166,7 +261,7 @@
 
 /* Creates space for game if needed beforehand? */
 .placeholder {
-  /* min-height: 26.5em; */
+  min-height: 27.5em;
 }
 
 .first-game-container {

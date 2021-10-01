@@ -10,9 +10,9 @@
 
   <div class="row center-container">
     <div class="col"></div>
-    <h1 class="col-lg-4 col-12">
+    <h1 class="col-lg-4 col-12 primary">
       <hr />
-      Title here
+      Gladiators
     </h1>
     <div class="col"></div>
   </div>
@@ -21,26 +21,29 @@
     <div class="col"></div>
     <div class="col-lg-6 col-md-8">
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iure
-        officiis dolor suscipit non placeat error cum, eius fuga animi quasi
-        possimus veritatis et maxime quia autem beatae laboriosam provident.
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur
-        velit magnam officiis soluta, voluptas, nesciunt qui porro corrupti ea
-        distinctio quisquam?
+        To play this game let's suppose we each have a set of gladatiors. Each
+        gladiator has a strength level. Each player selects one gladiator to
+        enter the colosseum and fight! The winning gladiator will absorb the
+        strength level of the opposing gladiator and become even stronger,
+        whereas the losing gladiator will be removed from its team.
+      </p>
+      <p>
+        Player A fields a gladiator that has a strength level
+        <b>x<sub>1</sub></b> and fights another gladiator with a strength level
+        <b>y<sub>1</sub></b
+        >, the probability of player A winning this fight is equivalent to
+
+        <b>x<sub>1</sub></b> / ( <b>x<sub>1</sub></b> + <b>y<sub>1</sub></b
+        >). Conversely, the probability of player B winning this fight is
+        equivalent to
+
+        <b>y<sub>1</sub></b> / ( <b>x<sub>1</sub></b> + <b>y<sub>1</sub></b
+        >).
       </p>
 
       <p>
-        Given the gladiator <b>a</b> has a level <b>x<sub>a</sub></b> and fights
-        another gladiator <b>b</b> with a level <b>x<sub>b</sub></b
-        >, the probability of gladiator <b>a</b> winning this fight is
-        equivalent to
-
-        <b>x<sub>a</sub></b> / ( <b>x<sub>a</sub></b> + <b>x<sub>b</sub></b
-        >). Conversely, the probability of gladiator <b>b</b> winning this fight
-        is equivalent to
-
-        <b>x<sub>b</sub></b> / ( <b>x<sub>a</sub></b> + <b>x<sub>b</sub></b
-        >).
+        For example, a level 5 fighting a level 15 will have a 5/(5+15), or 25%,
+        chance of winning
       </p>
     </div>
     <div class="col"></div>
@@ -53,7 +56,7 @@
         <div class="col"></div>
         <div class="col-lg-6 col-12">
           <hr />
-          <h2><b>Example Game</b></h2>
+          <h2 class="primary"><b>Example Game</b></h2>
           <small
             >Randomly generated levels for each gladiator. Drag gladiators
             vertically to rearrange the order of fights</small
@@ -79,7 +82,7 @@
           >
             Reset
           </button>
-          <hr />
+          <!-- <hr /> -->
         </div>
 
         <div class="col"></div>
@@ -89,8 +92,8 @@
         class="row first-game-container center-container"
         *ngIf="!firstGameHidden"
       >
-        <div class="col-md-1"></div>
-        <div class="col-4">
+        <div class="d-none d-md-block col-md-1"></div>
+        <div class="col-4 p-0">
           <div class="center-container text-container">
             <b>Player A</b>
           </div>
@@ -109,7 +112,8 @@
                 class="card grabbable glow"
                 [ngClass]="{
                   'first-glad': i == 0,
-                  'winning-glad': i == 0 && firstGameFightWinner == 'A'
+                  'winning-glad': i == 0 && firstGameFightWinner == 'A',
+                  'losing-glad': i == 0 && firstGameFightWinner == 'B'
                 }"
               >
                 Level {{ glad }}
@@ -127,7 +131,7 @@
           </div>
         </div>
 
-        <div class="col-4 col-sm-2 col-xs-1 center-container">
+        <div class="col-4 col-sm-2 col-xs-1 center-container p-0">
           <div
             class="center-container status-container"
             color="warn"
@@ -150,7 +154,11 @@
             <b>B Wins!</b>
           </div>
 
-          <div class="connector" [hidden]="firstGameState.length > 0"></div>
+          <div
+            class="connector"
+            [class.inactive]="firstGameFightStarted"
+            [hidden]="firstGameState.length > 0"
+          ></div>
           <div
             class="battle-button-container"
             [hidden]="firstGameState.length > 0"
@@ -159,13 +167,14 @@
               mat-fab
               class="battle-button"
               (click)="initiateFightSequence()"
-              color="primary"
+              color="warn"
+              [disabled]="firstGameFightStarted"
             >
               ⚔️
             </button>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-4 p-0">
           <div class="center-container text-container"><b>Player B</b></div>
           <div
             cdkDropList
@@ -182,7 +191,8 @@
                 class="card grabbable"
                 [ngClass]="{
                   'first-glad': i == 0,
-                  'winning-glad': i == 0 && firstGameFightWinner == 'B'
+                  'winning-glad': i == 0 && firstGameFightWinner == 'B',
+                  'losing-glad': i == 0 && firstGameFightWinner == 'A'
                 }"
               >
                 Level {{ glad }}
@@ -196,7 +206,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-1"></div>
+        <div class="d-none d-md-block col-md-1"></div>
       </div>
     </div>
     <div class="col-sm"></div>
@@ -204,7 +214,7 @@
 
   <div class="row center-container">
     <div class="col"></div>
-    <h2 class="col-lg-4 col-12">
+    <h2 class="col-lg-4 col-12 primary">
       <b
         ><hr />
         Ordering Gladiators</b
@@ -217,29 +227,34 @@
     <div class="col"></div>
     <div class="col-lg-6 col-md-8">
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore iure
-        officiis dolor suscipit non placeat error cum, eius fuga animi quasi
-        possimus veritatis et maxime quia autem beatae laboriosam provident.
-        Lorem ipsum
+        Have a think about what strategy you might adopt to try and give
+        yourself an advantage in this game. For example, would it be wise to put
+        your strongest gladiator first?
       </p>
       <p>
-        Let's assume you (Player A) have a set of gladiators with levels [2, 4,
-        8, 16]. Player B has an identical set of gladiators. Have a go at
-        checking a given ordering simulated over a large number of games
+        Let's assume an equal game. You (Player A) have a set of gladiators with
+        levels [2, 4, 8, 16]. Player B has an identical set of gladiators [2, 4,
+        8, 16]. Have a go at checking a given order simulated over a large
+        number of games
       </p>
     </div>
     <div class="col"></div>
   </div>
 
-  <div class="row battle-zone">
+  <div class="row">
     <div class="col-sm"></div>
     <div class="col-lg-6 col-md-8">
       <div class="row first-game-container center-container">
-        <div class="col-md-1"></div>
-        <div class="col-4">
+        <div class="col-1"></div>
+        <div class="col-4 center-container">
           <div class="center-container text-container">
             <b>Player A</b>
           </div>
+
+          <div class="vert-connector-container">
+            <div class="connector-vertical"></div>
+          </div>
+
           <div
             cdkDropList
             [cdkDropListData]="simulatedMyGlads"
@@ -263,7 +278,6 @@
                 <br />
                 🤹‍♂️
                 <br />
-
                 <div *ngIf="i == 0">
                   {{ percentWinDisplaySimulated(0) | number: "1.1-1" }}%
                 </div>
@@ -272,11 +286,16 @@
           </div>
         </div>
 
-        <div class="col-2 col-sm-1 center-container"></div>
-        <div class="col-4">
+        <div class="col-2 col-sm-1"></div>
+        <div class="col-4 center-container">
           <div class="center-container text-container">
             <b>Player B</b>
           </div>
+
+          <div class="vert-connector-container">
+            <div class="connector-vertical"></div>
+          </div>
+
           <div
             cdkDropList
             [cdkDropListData]="simulatedEnemyGlads"
@@ -305,34 +324,80 @@
             </div>
           </div>
         </div>
-        <div class="col-md-1"></div>
+        <div class="col col-md-1"></div>
       </div>
 
       <div class="row">
-        <div class="col-sm"></div>
-        <div class="col-lg-6 col-md-8">
+        <div class="col"></div>
+        <div class="col-lg-10 col-md-10">
           <div class="row center-container">
             <div class="col"></div>
-            <div class="col-lg-10 col-12">
+            <div class="col-lg-8 col-12 simulate-container">
               <br />
               <!-- <p><b>Simulate</b></p> -->
-              <p>Simulate the above ordering</p>
+              <small>
+                Each simulation will stick to this order until a player loses
+                all gladatiors. Simulate the above order over
+                <small class="primary">{{
+                  simulateN | number: "1.0":"en-US"
+                }}</small>
+                full games.
+              </small>
+              <br />
+
               <button
                 mat-raised-button
                 color="primary"
                 class="simulation-button"
                 (click)="initiateSimulation()"
+                *ngIf="!simulationStarted"
               >
                 Simulate
               </button>
+              <br />
+              <div
+                class="spinner-grow primary"
+                role="status"
+                *ngIf="simulationStarted"
+              >
+                <span class="sr-only"></span>
+              </div>
+
+              <div *ngIf="simulationFinished">
+                <br />
+                <h3>
+                  Player A: <b class="primary">{{ playerATally }} </b>Wins
+                  <br />
+                  Player B:
+                  <b class="primary">{{ playerBTally }} </b> Wins
+                </h3>
+              </div>
             </div>
             <div class="col"></div>
           </div>
         </div>
-        <div class="col-sm"></div>
+        <div class="col"></div>
       </div>
     </div>
     <div class="col-sm"></div>
+  </div>
+
+  <div class="row text-container">
+    <div class="col"></div>
+    <div class="col-lg-6 col-md-8">
+      <p>
+        As you can see in the above simulation, regardless of your ordering
+        strategy, the success of each player is always roughly the same at ~50%.
+        We see that the choice of strategy doesn't even matter!
+      </p>
+      <p>
+        The only factor that matters is the total level of your team compared to
+        your opposition. The probability of player A winning is equivalent to
+        sum(A) / sum(A) + sum(B)
+      </p>
+      <hr />
+    </div>
+    <div class="col"></div>
   </div>
 </div>
 

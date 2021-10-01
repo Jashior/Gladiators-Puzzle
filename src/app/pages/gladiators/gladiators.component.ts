@@ -13,6 +13,7 @@ import {
   transition,
 } from '@angular/animations';
 import { getCurrencySymbol } from '@angular/common';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-gladiators',
@@ -44,12 +45,19 @@ import { getCurrencySymbol } from '@angular/common';
 export class GladiatorsComponent implements OnInit {
   myGlads = [];
   enemyGlads = [];
-  simulatedMyGlads = [2, 4, 6, 8];
-  simulatedEnemyGlads = [2, 4, 6, 8];
+  simulatedMyGlads = [2, 4, 8, 16];
+  simulatedEnemyGlads = [2, 4, 8, 16];
+  simulatedMyGladsCopy = [];
+  simulatedEnemyGladsCopy = [];
   firstGameHidden = true;
   firstGameFightStarted = false;
   firstGameFightWinner = '';
   firstGameState = '';
+  simulationStarted = false;
+  simulationFinished = false;
+  playerATally = 0;
+  playerBTally = 0;
+  simulateN = 100000;
 
   constructor() {}
 
@@ -69,23 +77,28 @@ export class GladiatorsComponent implements OnInit {
     let chanceBWin = this.percentWinDisplay(1) / 100;
     let r = Math.random();
 
-    this.firstGameFightStarted = false;
     if (r <= chanceAWin) {
       // Player A Wins fight
       this.firstGameFightWinner = 'A';
-      this.myGlads[0] += this.enemyGlads[0];
-      this.enemyGlads = this.enemyGlads.slice(1);
+      setTimeout(() => {
+        this.myGlads[0] += this.enemyGlads[0];
+        this.enemyGlads = this.enemyGlads.slice(1);
+      }, 1500);
     } else {
       // Player B Wins fight
       this.firstGameFightWinner = 'B';
-      this.enemyGlads[0] += this.myGlads[0];
-      this.myGlads = this.myGlads.slice(1);
+      setTimeout(() => {
+        this.enemyGlads[0] += this.myGlads[0];
+        this.myGlads = this.myGlads.slice(1);
+      }, 1500);
     }
 
     // Keeps winner condition for 1 second to apply animation in css
-    setTimeout(() => (this.firstGameFightWinner = ''), 1000);
-
-    this.checkWinState();
+    setTimeout(() => {
+      this.firstGameFightWinner = '';
+      this.firstGameFightStarted = false;
+      this.checkWinState();
+    }, 1500);
   }
 
   checkWinState() {
@@ -153,7 +166,76 @@ export class GladiatorsComponent implements OnInit {
     ];
   }
 
-  initiateSimulation() {}
+  initiateSimulation() {
+    if (this.simulationStarted) {
+      return;
+    }
+    this.simulationFinished = false;
+    this.simulationStarted = true;
+
+    this.playerATally = 0;
+    this.playerBTally = 0;
+
+    for (let i = 0; i < this.simulateN; i++) {
+      this.simulatedMyGladsCopy = this.simulatedMyGlads.slice(0);
+      this.simulatedEnemyGladsCopy = this.simulatedEnemyGlads.slice(0);
+      let gameResult = this.simulateAGame();
+
+      if (gameResult == 'A') {
+        this.playerATally++;
+      }
+
+      if (gameResult == 'B') {
+        this.playerBTally++;
+      }
+    }
+
+    setTimeout(() => {
+      this.simulationStarted = false;
+      this.simulationFinished = true;
+    }, 1000);
+  }
+
+  simulateAGame() {
+    while (
+      this.simulatedMyGladsCopy.length > 0 &&
+      this.simulatedEnemyGladsCopy.length > 0
+    ) {
+      let fightWinner = '';
+      fightWinner = this.fightGiven(
+        this.simulatedMyGladsCopy[0],
+        this.simulatedEnemyGladsCopy[0]
+      );
+
+      if (fightWinner == 'A') {
+        this.simulatedMyGladsCopy[0] += this.simulatedEnemyGladsCopy[0];
+        this.simulatedEnemyGladsCopy = this.simulatedEnemyGladsCopy.slice(1);
+      }
+      if (fightWinner == 'B') {
+        this.simulatedEnemyGladsCopy[0] += this.simulatedMyGladsCopy[0];
+        this.simulatedMyGladsCopy = this.simulatedMyGladsCopy.slice(1);
+      }
+    }
+
+    if (this.simulatedEnemyGladsCopy.length == 0) {
+      return 'A';
+    }
+    if (this.simulatedMyGladsCopy.length == 0) {
+      return 'B';
+    }
+  }
+
+  fightGiven(a, b) {
+    let chanceAWin = a / (a + b);
+    let chanceBWin = b / (a + b);
+    let r = Math.random();
+
+    if (r <= chanceAWin) {
+      return 'A';
+    } else {
+      return 'B';
+    }
+  }
 
   // Drag & Drop functionality
   drop(event: CdkDragDrop<string[]>) {
