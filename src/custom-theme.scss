@@ -48,8 +48,8 @@ $accent: map-get($blog-theme, accent);
 
 // ----------------- Colours (ALTERNATIVE THEME) ----------------- // 
 // Example alternate Angular Material Theme
-$my-alternate-primary: mat-palette($mat-red);
-$my-alternate-accent: mat-palette($mat-green, 400);
+$my-alternate-primary: mat-palette($mat-indigo);
+$my-alternate-accent: mat-palette($mat-pink, 400);
 $my-alternate-warn: mat-palette($mat-grey);
 $my-alternate-theme: mat-dark-theme($my-alternate-primary, $my-alternate-accent, $my-alternate-warn);
 

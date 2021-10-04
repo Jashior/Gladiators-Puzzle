@@ -14,6 +14,7 @@ import {
 } from '@angular/animations';
 import { getCurrencySymbol } from '@angular/common';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import * as Highcharts from 'highcharts';
 
 @Component({
   selector: 'app-gladiators',
@@ -58,7 +59,8 @@ export class GladiatorsComponent implements OnInit {
   playerATally = 0;
   playerBTally = 0;
   simulateN = 100000;
-
+  simulationChart: typeof Highcharts = Highcharts;
+  simulationChartOptions: Highcharts.Options = {};
   constructor() {}
 
   ngOnInit(): void {}
@@ -170,6 +172,7 @@ export class GladiatorsComponent implements OnInit {
     if (this.simulationStarted) {
       return;
     }
+
     this.simulationFinished = false;
     this.simulationStarted = true;
 
@@ -193,6 +196,53 @@ export class GladiatorsComponent implements OnInit {
     setTimeout(() => {
       this.simulationStarted = false;
       this.simulationFinished = true;
+
+      this.simulationChartOptions = {
+        title: {
+          text: '',
+        },
+        chart: {
+          type: 'bar',
+          backgroundColor: 'var(--color-background)',
+        },
+        xAxis: {
+          categories: ['Player A', 'Player B'],
+          title: {
+            text: null,
+          },
+        },
+        yAxis: {
+          min: 0,
+          title: {
+            text: `Number of wins (${this.simulateN} games)`,
+            align: 'high',
+          },
+          labels: {
+            overflow: 'justify',
+          },
+        },
+        plotOptions: {
+          bar: {
+            dataLabels: {
+              enabled: true,
+            },
+          },
+          series: {
+            color: 'var(--color-primary)',
+          },
+        },
+        series: [
+          {
+            showInLegend: false,
+            type: undefined,
+            name: 'Simulated Wins',
+            data: [this.playerATally, this.playerBTally],
+          },
+        ],
+        credits: {
+          enabled: false,
+        },
+      };
     }, 1000);
   }
 

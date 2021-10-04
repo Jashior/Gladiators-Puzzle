@@ -22,11 +22,11 @@
 }
 
 .status-container {
-  margin-bottom: 1rem;
+  margin-bottom: 1.7rem;
 }
 
 .simulate-container {
-  height: 500px;
+  height: 600px;
 }
 
 .reset-first-button,
@@ -146,7 +146,7 @@
 
 
 
-.connector {
+/* .connector {
   background-color: var(--color-warn);
   height: 0.2rem;
   width: 100%;
@@ -160,9 +160,25 @@
 }
 
 .connector.inactive {
-  display: none;
+  opacity: 0;
 }
 
+.connector.active {
+  animation: connector-appear-anim 0.5s ease-in;
+  ;
+}
+
+@keyframes connector-appear-anim {
+  0% {
+    opacity: 0;
+    width: 0%;
+  }
+
+  100% {
+    opacity: 0;
+    width: 100%;
+  }
+} */
 
 
 

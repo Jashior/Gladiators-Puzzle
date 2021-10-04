@@ -157,6 +157,7 @@
           <div
             class="connector"
             [class.inactive]="firstGameFightStarted"
+            [class.active]="!firstGameFightStarted"
             [hidden]="firstGameState.length > 0"
           ></div>
           <div
@@ -195,7 +196,7 @@
                   'losing-glad': i == 0 && firstGameFightWinner == 'A'
                 }"
               >
-                Level {{ glad }}
+                Level {{ glad }
                 <br />
                 Gladiator <br />
                 🤹‍♂️ <br />
@@ -327,8 +328,7 @@
         <div class="col col-md-1"></div>
       </div>
 
-      <div class="row">
-        <div class="col"></div>
+      <div class="row center-container">
         <div class="col-lg-10 col-md-10">
           <div class="row center-container">
             <div class="col"></div>
@@ -371,12 +371,17 @@
                   Player B:
                   <b class="primary">{{ playerBTally }} </b> Wins
                 </h3>
+
+                <highcharts-chart
+                  [Highcharts]="simulationChart"
+                  [options]="simulationChartOptions"
+                  style="width: 100%; height: 320px; display: block"
+                ></highcharts-chart>
               </div>
             </div>
             <div class="col"></div>
           </div>
         </div>
-        <div class="col"></div>
       </div>
     </div>
     <div class="col-sm"></div>

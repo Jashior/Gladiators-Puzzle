@@ -10,6 +10,7 @@ import { MaterialModule } from './material/material.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -33,6 +34,7 @@ const routes: Routes = [
     DragDropModule,
     MatButtonModule,
     MatIconModule,
+    HighchartsChartModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
