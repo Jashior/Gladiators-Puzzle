@@ -23,27 +23,31 @@
       <p>
         To play this game let's suppose we each have a set of gladatiors. Each
         gladiator has a strength level. Each player selects one gladiator to
-        enter the colosseum and fight! The winning gladiator will absorb the
-        strength level of the opposing gladiator and become even stronger,
-        whereas the losing gladiator will be removed from its team.
+        enter the colosseum and fight!
       </p>
+
+      <p>
+        The winning gladiator will absorb the strength level of the opposing
+        gladiator and become even stronger, whereas the losing gladiator will be
+        removed from its team.
+      </p>
+
       <p>
         Player A fields a gladiator that has a strength level
         <b>x<sub>1</sub></b> and fights another gladiator with a strength level
         <b>y<sub>1</sub></b
         >, the probability of player A winning this fight is equivalent to
 
-        <b>x<sub>1</sub></b> / ( <b>x<sub>1</sub></b> + <b>y<sub>1</sub></b
-        >). Conversely, the probability of player B winning this fight is
-        equivalent to
+        <span [mathjax]="math1"></span>
 
-        <b>y<sub>1</sub></b> / ( <b>x<sub>1</sub></b> + <b>y<sub>1</sub></b
-        >).
+        Conversely, the probability of player B winning this fight is equivalent
+        to
+
+        <span [mathjax]="math2"></span>
       </p>
 
       <p>
-        For example, a level 5 fighting a level 15 will have a 5/(5+15), or 25%,
-        chance of winning
+        <span [mathjax]="math3"></span>
       </p>
     </div>
     <div class="col"></div>
@@ -398,7 +402,7 @@
       <p>
         The only factor that matters is the total level of your team compared to
         your opposition. The probability of player A winning is equivalent to
-        sum(A) / sum(A) + sum(B)
+        <span [mathjax]="math4"></span>
       </p>
       <hr />
     </div>

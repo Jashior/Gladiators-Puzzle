@@ -15,6 +15,9 @@ import {
 import { getCurrencySymbol } from '@angular/common';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import * as Highcharts from 'highcharts';
+import { MathjaxModule } from 'mathjax-angular';
+
+// imports: [MathjaxModule.forChild()],
 
 @Component({
   selector: 'app-gladiators',
@@ -61,6 +64,21 @@ export class GladiatorsComponent implements OnInit {
   simulateN = 100000;
   simulationChart: typeof Highcharts = Highcharts;
   simulationChartOptions: Highcharts.Options = {};
+
+  math1 = '$$P(x_1)=\\frac{x_1}{x_1 + y_1}$$';
+  math2 = '$$P(y_1)=\\frac{y_1}{x_1 + y_1}$$';
+  math3 = {
+    latex:
+      'For example, a level 5 fighting a level 15 will have a $\\frac{5}{5+15}$ (25%) chance of winning',
+  };
+  math4 = {
+    latex: '$int x^2dx = 2x + C$ is worth $2.00.  Even ',
+  };
+  // math4 = {
+  //   latex:
+  //     '$\\frac{ $\\sum$\\limits_{i=1}^n x_i}{ $\\sum$\\limits_{i=1}^n x_i + $\\sum$\\limits_{i=1}^n y_i}',
+  // };
+
   constructor() {}
 
   ngOnInit(): void {}
