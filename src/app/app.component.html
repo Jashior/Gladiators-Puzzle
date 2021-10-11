@@ -1,1 +1,27 @@
-<router-outlet> </router-outlet>
+<div class="main" [ngClass]="{ 'dark-theme': isDarkTheme }">
+  <!-- Top Toolbar  -->
+  <mat-toolbar class="toolbar">
+    <button mat-raised-button color="primary" routerLink="/home">Home</button>
+    <span class="spacer"></span>
+
+    <mat-slide-toggle
+      [(ngModel)]="isDarkTheme"
+      (change)="storeThemeSelection()"
+      labelPosition="before"
+    >
+      <mat-icon class="night-icon"> bedtime </mat-icon>
+    </mat-slide-toggle>
+  </mat-toolbar>
+
+  <!-- Main Content -->
+  <mat-sidenav-container
+    class="content"
+    [ngClass]="{ 'dark-theme': isDarkTheme }"
+  >
+    <mat-sidenav-content>
+      <mat-divider></mat-divider>
+
+      <router-outlet> </router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -15,9 +15,9 @@ import {
 import { getCurrencySymbol } from '@angular/common';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import * as Highcharts from 'highcharts';
-import { MathjaxModule } from 'mathjax-angular';
-
-// imports: [MathjaxModule.forChild()],
+import { KatexModule } from 'ng-katex';
+import { KatexOptions } from 'ng-katex';
+import { InlineSVGModule } from 'ng-inline-svg';
 
 @Component({
   selector: 'app-gladiators',
@@ -64,21 +64,37 @@ export class GladiatorsComponent implements OnInit {
   simulateN = 100000;
   simulationChart: typeof Highcharts = Highcharts;
   simulationChartOptions: Highcharts.Options = {};
-
-  math1 = '$$P(x_1)=\\frac{x_1}{x_1 + y_1}$$';
-  math2 = '$$P(y_1)=\\frac{y_1}{x_1 + y_1}$$';
-  math3 = {
-    latex:
-      'For example, a level 5 fighting a level 15 will have a $\\frac{5}{5+15}$ (25%) chance of winning',
+  inlineMode: KatexOptions = {
+    displayMode: false,
   };
-  math4 = {
-    latex: '$int x^2dx = 2x + C$ is worth $2.00.  Even ',
+  displayMode: KatexOptions = {
+    displayMode: true,
   };
-  // math4 = {
-  //   latex:
-  //     '$\\frac{ $\\sum$\\limits_{i=1}^n x_i}{ $\\sum$\\limits_{i=1}^n x_i + $\\sum$\\limits_{i=1}^n y_i}',
-  // };
-
+  a_x = 'a_x';
+  b_y = 'b_y';
+  kmathSimGlads = '[2,4,8,16]';
+  kmath1 = '$$P(a_1\\,wins\\,fight)=\\frac{a_1}{a_1 + b_1}$$';
+  kmath2 = '$$P(b_1\\,wins\\,fight)=\\frac{b_1}{a_1 + b_1}$$';
+  kmath3 = '\\frac{5}{5+15}';
+  kmath4 = '=\\frac{\\sum_{i=1}^na_i}{\\sum_{i=1}^na_i+\\sum_{i=1}^mb_i}';
+  kmath5 = '=\\frac{A}{A+B}';
+  kmath6 = 'n=1,\\quad m=1';
+  kmath7 = 'k=n+m, \\quad n>0, \\quad m>0';
+  kmath8 =
+    'P(A\\,wins)=\\frac{\\sum_{i=1}^na_i}{\\sum_{i=1}^na_i+\\sum_{i=1}^mb_i}=\\frac{A}{A+B}';
+  kmath10 = '[b_1, b_2..., b_m]';
+  kmath11 = '[a_1, a_2..., a_n]';
+  kmath12 = 'P(A\\,wins)=\\frac{A}{A+B}';
+  kmath13 = '[b_1, b_2..., b_{m+1}]';
+  kmath14 = 'P(a_x\\,wins\\,fight)=\\frac{a_x}{a_x+b_y}';
+  kmath15 = 'P(A\\,wins)=\\frac{A+b_y}{A+B}';
+  kmath16 = 'P(b_x\\,wins\\,fight)=\\frac{b_y}{a_x + b_y}';
+  kmath17 = 'P(A\\,wins)=\\frac{A-a_x}{A+B}';
+  kmath18 = `P(A\\,wins)=\\frac{a_x}{a_x + b_y}*\\frac{A+b_y}{A+B}+\\frac{b_y}{a_x+b_y}*\\frac{A-a_x}{A+B}`;
+  kmath19 = `=\\frac{a_xA + a_xb_y + b_yA - a_xb_y}{(a_x+b_y)(A+B)}`;
+  kmath20 = `=\\frac{a_xA + b_yA}{(a_x+b_y)(A+B)}`;
+  kmath21 = `=\\frac{A(a_x + b_y)}{(a_x+b_y)(A+B)}`;
+  kmath22 = `=\\frac{A}{A+B}`;
   constructor() {}
 
   ngOnInit(): void {}

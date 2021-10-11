@@ -1,6 +1,12 @@
 .primary {
   color: var(--color-primary)
 }
+.accent {
+  color: var(--color-accent)
+}
+.success {
+  color: var(--color-success)
+}
 
 .container {
   min-width: 350px;
@@ -61,6 +67,7 @@
   margin-bottom: 1rem;
   border: 1px solid var(--color-primary);
   background-color: var(--color-offwhite);
+  color: var(--color-dark);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
   ;
 }
@@ -87,14 +94,14 @@
 
   to {
     /* background-color: var(--color-background); */
-    border: 1px solid var(--color-warn);
+    border: 1px solid var(--color-accent);
   }
 }
 
 /* Reversed glow effect */
 @keyframes first-glad-anim-reverse {
   from {
-    border: 1px solid var(--color-warn);
+    border: 1px solid var(--color-accent);
   }
 
   to {
@@ -105,9 +112,8 @@
 /* Winning flash of green */
 @keyframes winning-glad-anim {
   0% {
-    background: var(--color-background);
-    border: 1px solid var(--color-warn);
-
+    border: 1px solid var(--color-accent);
+    background-color: var(--color-offwhite);
   }
 
   50% {
@@ -122,20 +128,19 @@
 /* Winning flash of green */
 @keyframes losing-glad-anim {
   0% {
-    background: var(--color-background);
+    background-color: var(--color-offwhite);
     border: 1px solid var(--color-warn);
-
   }
 
   50% {
     background-color: var(--color-warn);
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--color-warn);
     opacity: 50%;
   }
 
   100% {
     background-color: var(--color-warn);
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--color-warn);
     opacity: 0%;
   }
 }
@@ -143,46 +148,6 @@
 .hidden {
   visibility: hidden;
 }
-
-
-
-/* .connector {
-  background-color: var(--color-warn);
-  height: 0.2rem;
-  width: 100%;
-  position: absolute;
-
-  top: 17.5%;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.connector.inactive {
-  opacity: 0;
-}
-
-.connector.active {
-  animation: connector-appear-anim 0.5s ease-in;
-  ;
-}
-
-@keyframes connector-appear-anim {
-  0% {
-    opacity: 0;
-    width: 0%;
-  }
-
-  100% {
-    opacity: 0;
-    width: 100%;
-  }
-} */
-
-
-
-
 
 .vert-connector-container {
   position: relative;
@@ -283,3 +248,27 @@
 .first-game-container {
   min-height: 26.5em;
 }
+
+/* Changes stroke colour of svg */
+.svg-resource ::ng-deep svg path{
+  stroke: var(--color-primary);
+}
+
+/* Changes size of svg */
+.svg-resource ::ng-deep svg{
+  width: 200px;
+  height: 200px;
+}
+
+.half-hr{
+  width:50%;
+  margin-left:25% ;
+  margin-right:25%;
+}
+
+highcharts-chart{
+  width: 100%; 
+  height: 320px; 
+  display: block;
+}
+

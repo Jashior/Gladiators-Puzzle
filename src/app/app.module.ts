@@ -11,7 +11,14 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HighchartsChartModule } from 'highcharts-angular';
-import { MathjaxModule } from 'mathjax-angular';
+import { KatexModule } from 'ng-katex';
+import { HttpClientModule } from '@angular/common/http';
+import { InlineSVGModule } from 'ng-inline-svg';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { FormsModule } from '@angular/forms';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -36,20 +43,14 @@ const routes: Routes = [
     MatButtonModule,
     MatIconModule,
     HighchartsChartModule,
-    MathjaxModule.forRoot({
-      config: {
-        loader: {
-          load: ['output/svg', '[tex]/require', '[tex]/ams'],
-        },
-        tex: {
-          inlineMath: [['$', '$']],
-          packages: ['base', 'require', 'ams'],
-        },
-        svg: { fontCache: 'global' },
-      },
-      src: 'https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/startup.js',
-    }),
-    MathjaxModule.forChild(),
+    KatexModule,
+    HttpClientModule,
+    InlineSVGModule.forRoot(),
+    MatSlideToggleModule,
+    MatSidenavModule,
+    FormsModule,
+    MatToolbarModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

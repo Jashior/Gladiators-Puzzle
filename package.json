@@ -25,6 +25,8 @@
     "highcharts": "^9.2.2",
     "highcharts-angular": "^2.10.0",
     "mathjax-angular": "^1.4.2",
+    "ng-inline-svg": "^13.1.0",
+    "ng-katex": "^2.0.3",
     "ng2-dragula": "^2.1.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

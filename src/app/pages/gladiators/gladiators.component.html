@@ -1,19 +1,13 @@
 <div class="container">
   <div class="row top-container">
     <div class="col"></div>
-    <div class="col-4">
-      <br />
-      <button mat-raised-button color="primary" routerLink="/home">Home</button>
-    </div>
+    <div class="col-4"></div>
     <div class="col"></div>
   </div>
 
   <div class="row center-container">
     <div class="col"></div>
-    <h1 class="col-lg-4 col-12 primary">
-      <hr />
-      Gladiators
-    </h1>
+    <h1 class="col-lg-4 col-12 primary">Gladiators</h1>
     <div class="col"></div>
   </div>
 
@@ -34,21 +28,22 @@
 
       <p>
         Player A fields a gladiator that has a strength level
-        <b>x<sub>1</sub></b> and fights another gladiator with a strength level
-        <b>y<sub>1</sub></b
+        <b>a<sub>1</sub></b> and fights another gladiator with a strength level
+        <b>b<sub>1</sub></b
         >, the probability of player A winning this fight is equivalent to
 
-        <span [mathjax]="math1"></span>
+        <ng-katex-paragraph [paragraph]="kmath1"></ng-katex-paragraph>
 
-        Conversely, the probability of player B winning this fight is equivalent
-        to
-
-        <span [mathjax]="math2"></span>
+        Symmetrically, the probability of player B winning this fight is
+        <ng-katex-paragraph [paragraph]="kmath2"></ng-katex-paragraph>
       </p>
 
       <p>
-        <span [mathjax]="math3"></span>
+        For example, a level 5 fighting a level 15 will have a
+        <ng-katex [equation]="kmath3" [options]="inlineMode"></ng-katex> (25%)
+        chance of winning
       </p>
+      <hr class="primary" />
     </div>
     <div class="col"></div>
   </div>
@@ -59,14 +54,14 @@
       <div class="row center-container">
         <div class="col"></div>
         <div class="col-lg-6 col-12">
-          <hr />
           <h2 class="primary"><b>Example Game</b></h2>
+
           <small
             >Randomly generated levels for each gladiator. Drag gladiators
             vertically to rearrange the order of fights</small
           >
-          <br />
 
+          <br />
           <button
             *ngIf="firstGameHidden"
             mat-raised-button
@@ -86,7 +81,6 @@
           >
             Reset
           </button>
-          <!-- <hr /> -->
         </div>
 
         <div class="col"></div>
@@ -200,9 +194,9 @@
                   'losing-glad': i == 0 && firstGameFightWinner == 'A'
                 }"
               >
-                Level {{ glad }
+                Level {{ glad }}
                 <br />
-                Gladiator <br />
+                Gladiator<br />
                 🤹‍♂️ <br />
                 <div *ngIf="i == 0">
                   {{ percentWinDisplay(1) | number: "1.1-1" }}%
@@ -219,7 +213,7 @@
 
   <div class="row center-container">
     <div class="col"></div>
-    <h2 class="col-lg-4 col-12 primary">
+    <h2 class="col-lg-6 col-12 primary">
       <b
         ><hr />
         Ordering Gladiators</b
@@ -238,9 +232,12 @@
       </p>
       <p>
         Let's assume an equal game. You (Player A) have a set of gladiators with
-        levels [2, 4, 8, 16]. Player B has an identical set of gladiators [2, 4,
-        8, 16]. Have a go at checking a given order simulated over a large
-        number of games
+        levels
+        <ng-katex [equation]="kmathSimGlads" [options]="inlineMode"></ng-katex>.
+        Player B has an identical set of gladiators
+        <ng-katex [equation]="kmathSimGlads" [options]="inlineMode"></ng-katex>.
+        Have a go at checking a given order simulated over a large number of
+        games
       </p>
     </div>
     <div class="col"></div>
@@ -379,7 +376,6 @@
                 <highcharts-chart
                   [Highcharts]="simulationChart"
                   [options]="simulationChartOptions"
-                  style="width: 100%; height: 320px; display: block"
                 ></highcharts-chart>
               </div>
             </div>
@@ -401,13 +397,214 @@
       </p>
       <p>
         The only factor that matters is the total level of your team compared to
-        your opposition. The probability of player A winning is equivalent to
-        <span [mathjax]="math4"></span>
+        your opposition.
       </p>
-      <hr />
+      <p>
+        The probability of player A winning is always equal to their total
+        strength level (A) as a proportion of the overall strength level (A+B)
+      </p>
+    </div>
+    <div class="col"></div>
+  </div>
+
+  <div class="row center-container">
+    <div class="col"></div>
+    <h2 class="col-lg-6 col-12 primary">
+      <b
+        ><hr />
+        Proof</b
+      >
+    </h2>
+    <div class="col"></div>
+  </div>
+
+  <div class="row text-container">
+    <div class="col"></div>
+    <div class="col-lg-6 col-md-8">
+      <p><b>Proof by induction</b></p>
+
+      <P>
+        Proposition: For player A given a set of gladiators of size n and player
+        B given a set of gladiators of size m. The probability of player A
+        winning, regardless of strategy, is the proportion of total strength
+        levels:
+      </P>
+
+      <ng-katex [equation]="kmath4" [options]="displayMode"></ng-katex>
+
+      In short:
+
+      <ng-katex [equation]="kmath5" [options]="displayMode"></ng-katex>
+
+      <hr class="half-hr" />
+
+      <p>
+        <b>Base Case:</b> Looking at the minimum case where each team only has 1
+        gladiator.
+      </p>
+
+      <ng-katex [equation]="kmath6" [options]="displayMode"></ng-katex>
+
+      <div class="center-container">
+        <span
+          [inlineSVG]="'././assets/gladiators/base_case.svg'"
+          class="svg-resource"
+        ></span>
+      </div>
+
+      <p>
+        Each player only has 1 choice for the gladiator to choose, so the winner
+        of the game is equal to this one and only fight. This shows, for the
+        smallest case, the chance of winning the game is equivalent to the
+        proportion of total strength levels.
+      </p>
+
+      <hr class="half-hr" />
+
+      <p>
+        <b>Induction Hypothesis</b>: for an integer k = m + n we assume true the
+        probability of A winning:
+      </p>
+
+      <p>
+        <ng-katex [equation]="kmath8" [options]="displayMode"></ng-katex>
+      </p>
+
+      <p>
+        In other words, we assume true that the probability of player A winning
+        is their total strength as a proportion of the overall strength. We
+        assume this is true for the following game state
+      </p>
+      <p>
+        <ng-katex [equation]="kmath7" [options]="displayMode"></ng-katex>
+      </p>
+      <p>
+        Player A: n gladiators, total strength: A, team:
+        <ng-katex [equation]="kmath11" [options]="inlineMode"></ng-katex>
+      </p>
+      <p>
+        Player B: m gladiators, total strength: B, team:
+        <ng-katex [equation]="kmath10" [options]="inlineMode"></ng-katex>
+      </p>
+
+      <hr class="half-hr" />
+
+      <p><b>Inductive Step</b>: Now let's explore k+1 total gladiators.</p>
+
+      <p>
+        We'll give player B the additional gladiator for a total of m+1
+        gladiators.
+      </p>
+
+      <p>
+        We want to prove that the chance of player A winning is still
+        proportional to the total strength levels. In other words we want to
+        prove that
+      </p>
+
+      <ng-katex [equation]="kmath12" [options]="displayMode"></ng-katex>
+
+      <p>Our game state now starts as the following:</p>
+
+      <p>
+        Player A: n gladiators, total strength: A, team:
+        <ng-katex [equation]="kmath11" [options]="inlineMode"></ng-katex>
+      </p>
+      <p>
+        Player B: m gladiators, total strength: B, team:
+        <ng-katex [equation]="kmath13" [options]="inlineMode"></ng-katex>
+      </p>
+
+      <p>
+        First fight: each player chooses a gladiator,
+        <ng-katex [equation]="a_x" [options]="inlineMode"></ng-katex> Vs
+        <ng-katex [equation]="b_y" [options]="inlineMode"></ng-katex>. Let's
+        look at the two possible outcomes:
+      </p>
+
+      <div>
+        <hr class="half-hr" />
+
+        <h3 class="center-container">Outcome 1</h3>
+        <ng-katex [equation]="kmath14" [options]="displayMode"></ng-katex>
+        <p>This will produce the game state</p>
+
+        <p>
+          Player A: n gladiators, total strength: A +
+          <ng-katex [equation]="b_y" [options]="inlineMode"></ng-katex>
+        </p>
+
+        <p>
+          Player B: m+1 gladiators, total strength: B -
+          <ng-katex [equation]="b_y" [options]="inlineMode"></ng-katex>
+        </p>
+
+        <p>
+          Note how the total sum of strengths does not change during the game.
+          We now have a total of k gladiators and can work off our assumption
+          above
+        </p>
+
+        <p>
+          From our induction hypothesis we know that the probability of A
+          winning from here (with k total gladiators) is equivalent to the
+          proportion of total strengths:
+
+          <ng-katex [equation]="kmath15" [options]="displayMode"></ng-katex>
+        </p>
+      </div>
+
+      <div>
+        <hr class="half-hr" />
+
+        <h3 class="center-container">Outcome 2</h3>
+        <ng-katex [equation]="kmath16" [options]="displayMode"></ng-katex>
+        <p>This will produce the game state</p>
+
+        <p>
+          Player A: n-1 gladiators, total strength: A -
+          <ng-katex [equation]="a_x" [options]="inlineMode"></ng-katex>
+        </p>
+
+        <p>
+          Player B: m+1 gladiators, total strength: B +
+          <ng-katex [equation]="a_x" [options]="inlineMode"></ng-katex>
+        </p>
+
+        <p>
+          From our induction hypothesis we know the probability of A winning
+          from here (with k total gladiators) is equivalent to the proportion of
+          total strengths:
+
+          <ng-katex [equation]="kmath17" [options]="displayMode"></ng-katex>
+        </p>
+        <hr class="half-hr" />
+      </div>
+
+      <p>
+        Putting these together we can work out the total chance of winning from
+        the state of k+1 total gladiators.
+      </p>
+
+      <div class="center-container">
+        <span
+          [inlineSVG]="'././assets/gladiators/conclusion_step.svg'"
+          class="svg-resource"
+        ></span>
+      </div>
+
+      <br />
+      <ng-katex [equation]="kmath18" [options]="displayMode"></ng-katex>
+      <ng-katex [equation]="kmath19" [options]="displayMode"></ng-katex>
+      <ng-katex [equation]="kmath20" [options]="displayMode"></ng-katex>
+      <ng-katex [equation]="kmath21" [options]="displayMode"></ng-katex>
+      <span class="primary">
+        <ng-katex [equation]="kmath22" [options]="displayMode"></ng-katex>
+      </span>
+
+      By symmetry, we will also arrive at the same result if player A had
+      started with the additional k+1th gladiator.
     </div>
     <div class="col"></div>
   </div>
 </div>
-
-<!-- [@toggleBox]="firstGameBoxOn" -->
