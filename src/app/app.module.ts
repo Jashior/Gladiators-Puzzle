@@ -19,6 +19,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
+import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -51,6 +52,7 @@ const routes: Routes = [
     FormsModule,
     MatToolbarModule,
     MatDividerModule,
+    AngularStickyThingsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

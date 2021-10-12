@@ -6,8 +6,12 @@
   </div>
 
   <div class="row center-container">
+    <section id="introduction"></section>
     <div class="col"></div>
-    <h1 class="col-lg-4 col-12 primary">Gladiators</h1>
+    <div class="col-lg-4 col-12 primary">
+      <h1>Gladiators</h1>
+    </div>
+
     <div class="col"></div>
   </div>
 
@@ -43,9 +47,33 @@
         <ng-katex [equation]="kmath3" [options]="inlineMode"></ng-katex> (25%)
         chance of winning
       </p>
+      <section id="example-game"></section>
+
       <hr class="primary" />
     </div>
-    <div class="col"></div>
+    <div class="col">
+      <div class="side-contianer">
+        <div #spacer></div>
+        <div class="side" stickyThing [spacer]="spacer">
+          Gladiators
+          <ol>
+            <li class="chapter-link">
+              <a href="gladiators#introduction">Introduction</a>
+            </li>
+            <li class="chapter-link">
+              <a href="gladiators#example-game">Example Game</a>
+            </li>
+            <li class="chapter-link">
+              <a href="gladiators#ordering">Ordering</a>
+            </li>
+            <li class="chapter-link">
+              <a href="gladiators#simulation">Simulation</a>
+            </li>
+            <li class="chapter-link"><a href="gladiators#proof">Proof</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="row battle-zone">
@@ -212,7 +240,10 @@
   </div>
 
   <div class="row center-container">
+    <section id="ordering"></section>
+
     <div class="col"></div>
+
     <h2 class="col-lg-6 col-12 primary">
       <b
         ><hr />
@@ -335,6 +366,8 @@
             <div class="col"></div>
             <div class="col-lg-8 col-12 simulate-container">
               <br />
+              <section id="simulation"></section>
+
               <!-- <p><b>Simulate</b></p> -->
               <small>
                 Each simulation will stick to this order until a player loses
@@ -408,6 +441,7 @@
   </div>
 
   <div class="row center-container">
+    <section id="proof"></section>
     <div class="col"></div>
     <h2 class="col-lg-6 col-12 primary">
       <b
@@ -415,6 +449,7 @@
         Proof</b
       >
     </h2>
+
     <div class="col"></div>
   </div>
 

@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~12.2.8",
     "@angular/platform-browser-dynamic": "~12.2.8",
     "@angular/router": "~12.2.8",
+    "@w11k/angular-sticky-things": "^1.4.0",
     "bootstrap": "^5.1.1",
     "highcharts": "^9.2.2",
     "highcharts-angular": "^2.10.0",

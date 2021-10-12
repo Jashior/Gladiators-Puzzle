@@ -8,6 +8,32 @@
   color: var(--color-success)
 }
 
+@media screen and (max-width: 1024px) {
+  .side-container, .side {
+      display: none !important;
+  }
+}
+
+.side-container{
+  position: relative;
+
+}
+.side{
+  z-index: 100;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  border-left: 1px  solid
+}
+
+
+.chapter-link > a{
+  color: inherit;
+}
+
+.chapter-link > a:hover{
+  color: var(--color-accent);
+}
+
 .container {
   min-width: 350px;
 }
