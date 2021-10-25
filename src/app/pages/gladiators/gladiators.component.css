@@ -298,3 +298,8 @@ highcharts-chart{
   display: block;
 }
 
+
+/* ensures equal size for the two equations side by side */
+.equation-box{
+  height: 60px;
+}

@@ -47,7 +47,10 @@
         <ng-katex [equation]="kmath3" [options]="inlineMode"></ng-katex> (25%)
         chance of winning
       </p>
-      <section id="example-game"></section>
+
+      <div>
+        <section id="example-game"></section>
+      </div>
 
       <hr class="primary" />
     </div>
@@ -55,7 +58,7 @@
       <div class="side-contianer">
         <div #spacer></div>
         <div class="side" stickyThing [spacer]="spacer">
-          Gladiators
+          <h3>Gladiators</h3>
           <ol>
             <li class="chapter-link">
               <a href="gladiators#introduction">Introduction</a>
@@ -69,7 +72,9 @@
             <li class="chapter-link">
               <a href="gladiators#simulation">Simulation</a>
             </li>
-            <li class="chapter-link"><a href="gladiators#proof">Proof</a></li>
+            <li class="chapter-link">
+              <a href="gladiators#proof">Proof</a>
+            </li>
           </ol>
         </div>
       </div>
@@ -553,67 +558,74 @@
       <p>
         First fight: each player chooses a gladiator,
         <ng-katex [equation]="a_x" [options]="inlineMode"></ng-katex> Vs
-        <ng-katex [equation]="b_y" [options]="inlineMode"></ng-katex>. Let's
-        look at the two possible outcomes:
+        <ng-katex [equation]="b_y" [options]="inlineMode"></ng-katex>. Note how
+        the total sum of strengths does not change during the game. Let's look
+        at the two possible outcomes:
       </p>
 
-      <div>
-        <hr class="half-hr" />
+      <div class="row">
+        <div class="col-6">
+          <div>
+            <hr class="half-hr" />
 
-        <h3 class="center-container">Outcome 1</h3>
-        <ng-katex [equation]="kmath14" [options]="displayMode"></ng-katex>
-        <p>This will produce the game state</p>
+            <h3 class="center-container">Outcome 1</h3>
 
-        <p>
-          Player A: n gladiators, total strength: A +
-          <ng-katex [equation]="b_y" [options]="inlineMode"></ng-katex>
-        </p>
+            <div class="equation-box">
+              <ng-katex [equation]="kmath14" [options]="displayMode"></ng-katex>
+            </div>
+            <p>This will produce the game state</p>
 
-        <p>
-          Player B: m+1 gladiators, total strength: B -
-          <ng-katex [equation]="b_y" [options]="inlineMode"></ng-katex>
-        </p>
+            <p>
+              Player A: n gladiators, total strength: A +
+              <ng-katex [equation]="b_y" [options]="inlineMode"></ng-katex>
+            </p>
 
-        <p>
-          Note how the total sum of strengths does not change during the game.
-          We now have a total of k gladiators and can work off our assumption
-          above
-        </p>
+            <p>
+              Player B: m+1 gladiators, total strength: B -
+              <ng-katex [equation]="b_y" [options]="inlineMode"></ng-katex>
+            </p>
 
-        <p>
-          From our induction hypothesis we know that the probability of A
-          winning from here (with k total gladiators) is equivalent to the
-          proportion of total strengths:
+            <p>
+              From our induction hypothesis we know the probability of A winning
+              from here (with k total gladiators) is equivalent to the
+              proportion of total strengths:
 
-          <ng-katex [equation]="kmath15" [options]="displayMode"></ng-katex>
-        </p>
-      </div>
+              <ng-katex [equation]="kmath15" [options]="displayMode"></ng-katex>
+            </p>
+            <hr class="half-hr" />
+          </div>
+        </div>
+        <div class="col-6">
+          <div>
+            <hr class="half-hr" />
 
-      <div>
-        <hr class="half-hr" />
+            <h3 class="center-container">Outcome 2</h3>
 
-        <h3 class="center-container">Outcome 2</h3>
-        <ng-katex [equation]="kmath16" [options]="displayMode"></ng-katex>
-        <p>This will produce the game state</p>
+            <div class="equation-box">
+              <ng-katex [equation]="kmath16" [options]="displayMode"></ng-katex>
+            </div>
+            <p>This will produce the game state</p>
 
-        <p>
-          Player A: n-1 gladiators, total strength: A -
-          <ng-katex [equation]="a_x" [options]="inlineMode"></ng-katex>
-        </p>
+            <p>
+              Player A: n-1 gladiators, total strength: A -
+              <ng-katex [equation]="a_x" [options]="inlineMode"></ng-katex>
+            </p>
 
-        <p>
-          Player B: m+1 gladiators, total strength: B +
-          <ng-katex [equation]="a_x" [options]="inlineMode"></ng-katex>
-        </p>
+            <p>
+              Player B: m+1 gladiators, total strength: B +
+              <ng-katex [equation]="a_x" [options]="inlineMode"></ng-katex>
+            </p>
 
-        <p>
-          From our induction hypothesis we know the probability of A winning
-          from here (with k total gladiators) is equivalent to the proportion of
-          total strengths:
+            <p>
+              From our induction hypothesis we know the probability of A winning
+              from here (with k total gladiators) is equivalent to the
+              proportion of total strengths:
 
-          <ng-katex [equation]="kmath17" [options]="displayMode"></ng-katex>
-        </p>
-        <hr class="half-hr" />
+              <ng-katex [equation]="kmath17" [options]="displayMode"></ng-katex>
+            </p>
+            <hr class="half-hr" />
+          </div>
+        </div>
       </div>
 
       <p>
