@@ -1,12 +1,26 @@
 .main{
         height: 100%;
         background-color: var(--color-background);
+        width: 100%;
 }
 
 .content, .toolbar{
         background-color: var(--color-background);
-
 }
+
+/* Allows you to have sticky:top in child components */
+.content,  mat-sidenav-content{
+        overflow: visible;
+      
+}
+
+/* For smaller width screens, hide overflow to stop white border from right side creeping in */
+@media screen and (max-width: 1024px) {
+        .content,  mat-sidenav-content{
+                overflow-x: hidden; 
+        }
+}
+
 
     
 .spacer {

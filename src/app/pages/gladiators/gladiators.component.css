@@ -8,23 +8,29 @@
   color: var(--color-success)
 }
 
-@media screen and (max-width: 1024px) {
-  .side-container, .side {
-      display: none !important;
-  }
+.sticky-container{
+  position: absolute;
+  height: 90%;
 }
-
-.side-container{
-  position: relative;
-
-}
-.side{
-  z-index: 100;
+.sticky-top{
   padding-top: 1rem;
   padding-left: 1rem;
   border-left: 1px  solid
 }
 
+@media screen and (max-width: 1024px) {
+  .sticky-container {
+      display: none !important;
+  }
+}
+
+.outcome-container{
+  border: 1px solid var(--color-text-equivalent);
+  padding: 5px;
+  margin: 1px;
+  justify-content: center;
+  text-align: center;
+}
 
 .chapter-link > a{
   color: inherit;
@@ -302,4 +308,21 @@ highcharts-chart{
 /* ensures equal size for the two equations side by side */
 .equation-box{
   height: 60px;
+}
+
+.section-introduction, .section-example-game, .section-simulation{
+  min-height: 100vh;
+}
+
+.section-simulation{
+  min-height: 200vh;
+}
+
+.control-next{
+float: right;
+}
+
+.control-button{
+  color: var(--color-text-equivalent);
+  text-decoration: none;
 }

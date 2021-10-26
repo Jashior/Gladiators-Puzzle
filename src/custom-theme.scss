@@ -39,6 +39,7 @@ $light-theme: mat-light-theme((color: (primary: $light-primary,
   --color-success: #accf67;
   --color-offwhite: rgb(252, 252, 252);
   --color-dark: #212121;
+  --color-text-equivalent: #262422;
 }
 
 // ----------------- Colours (ALTERNATIVE THEME) ----------------- // 
@@ -60,6 +61,7 @@ $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   --color-success: #accf67;
   --color-offwhite: rgb(252, 252, 252);
   --color-dark: #212121;
+  --color-text-equivalent: #FFFFFF;
 }
 
 // -------------------------------------------------------------- // 

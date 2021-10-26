@@ -244,6 +244,11 @@ export class GladiatorsComponent implements OnInit {
           title: {
             text: null,
           },
+          labels: {
+            style: {
+              color: 'var(--color-primary)',
+            },
+          },
         },
         yAxis: {
           min: 0,
@@ -253,12 +258,21 @@ export class GladiatorsComponent implements OnInit {
           },
           labels: {
             overflow: 'justify',
+            style: {
+              color: 'var(--color-primary)',
+            },
           },
         },
         plotOptions: {
           bar: {
             dataLabels: {
-              enabled: true,
+              enabled: false,
+              style: {
+                color: 'var(--color-primary)',
+                fontWeight: 'normal',
+                fontSize: '15px',
+                shadow: false,
+              },
             },
           },
           series: {

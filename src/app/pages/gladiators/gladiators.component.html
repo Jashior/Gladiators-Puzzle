@@ -1,22 +1,54 @@
+<!-- Main content container -->
 <div class="container">
+  <!-- Sticky contents page -->
   <div class="row top-container">
-    <div class="col"></div>
-    <div class="col-4"></div>
+    <div class="col">
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-9">
+          <div class="sticky-container">
+            <div class="sticky-top">
+              <h3>Gladiators</h3>
+              <ol>
+                <li class="chapter-link">
+                  <a href="gladiators#introduction">Introduction</a>
+                </li>
+                <li class="chapter-link">
+                  <a href="gladiators#example-game">Example Game</a>
+                </li>
+                <li class="chapter-link">
+                  <a href="gladiators#ordering">Ordering</a>
+                </li>
+                <li class="chapter-link">
+                  <a href="gladiators#simulation">Simulation</a>
+                </li>
+                <li class="chapter-link">
+                  <a href="gladiators#proof">Proof</a>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6"></div>
     <div class="col"></div>
   </div>
 
+  <!-- Main Title -->
   <div class="row center-container">
-    <section id="introduction"></section>
     <div class="col"></div>
-    <div class="col-lg-4 col-12 primary">
+    <div class="col-lg-6 col-12 primary">
+      <section id="introduction"></section>
+      <hr class="primary" />
       <h1>Gladiators</h1>
     </div>
-
     <div class="col"></div>
   </div>
 
-  <div class="row text-container">
-    <div class="col"></div>
+  <!-- Introduction -->
+  <div class="row text-container section-introduction">
+    <div class="col d-none d-md-block"></div>
     <div class="col-lg-6 col-md-8">
       <p>
         To play this game let's suppose we each have a set of gladatiors. Each
@@ -48,45 +80,33 @@
         chance of winning
       </p>
 
-      <div>
-        <section id="example-game"></section>
-      </div>
+      <p>
+        Each player will continue to select and fight gladiators until a player
+        runs out
+      </p>
 
-      <hr class="primary" />
-    </div>
-    <div class="col">
-      <div class="side-contianer">
-        <div #spacer></div>
-        <div class="side" stickyThing [spacer]="spacer">
-          <h3>Gladiators</h3>
-          <ol>
-            <li class="chapter-link">
-              <a href="gladiators#introduction">Introduction</a>
-            </li>
-            <li class="chapter-link">
-              <a href="gladiators#example-game">Example Game</a>
-            </li>
-            <li class="chapter-link">
-              <a href="gladiators#ordering">Ordering</a>
-            </li>
-            <li class="chapter-link">
-              <a href="gladiators#simulation">Simulation</a>
-            </li>
-            <li class="chapter-link">
-              <a href="gladiators#proof">Proof</a>
-            </li>
-          </ol>
-        </div>
+      <div class="control-next">
+        <br />
+        <a href="gladiators#example-game" class="control-button">
+          <button matSuffix mat-icon-button aria-label="Clear" color="primary">
+            <small>Next</small>
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+        </a>
       </div>
     </div>
+    <div class="col d-none d-md-block"></div>
   </div>
 
-  <div class="row battle-zone">
-    <div class="col-sm"></div>
+  <!-- Example Game -->
+  <div class="row battle-zone section-example-game">
+    <div class="col-md d-none d-md-block"></div>
     <div class="col-lg-6 col-md-8">
       <div class="row center-container">
         <div class="col"></div>
         <div class="col-lg-6 col-12">
+          <section id="example-game"></section>
+          <hr class="primary" />
           <h2 class="primary"><b>Example Game</b></h2>
 
           <small
@@ -111,13 +131,14 @@
             color="warn"
             class="reset-first-button"
             (click)="resetFirstGame()"
+            [disabled]="firstGameFightStarted"
           >
             Reset
           </button>
         </div>
-
         <div class="col"></div>
       </div>
+
       <div class="placeholder" *ngIf="firstGameHidden"></div>
       <div
         class="row first-game-container center-container"
@@ -206,6 +227,7 @@
             </button>
           </div>
         </div>
+
         <div class="col-4 p-0">
           <div class="center-container text-container"><b>Player B</b></div>
           <div
@@ -240,14 +262,24 @@
         </div>
         <div class="d-none d-md-block col-md-1"></div>
       </div>
+      <div class="control-next" *ngIf="!firstGameHidden">
+        <br />
+        <a href="gladiators#ordering" class="control-button">
+          <button matSuffix mat-icon-button aria-label="Clear" color="primary">
+            <small>Next</small>
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+        </a>
+      </div>
     </div>
-    <div class="col-sm"></div>
+    <div class="col-md d-none d-md-block"></div>
   </div>
 
+  <!-- Ordering Title -->
   <div class="row center-container">
     <section id="ordering"></section>
 
-    <div class="col"></div>
+    <div class="col-md d-none d-md-block"></div>
 
     <h2 class="col-lg-6 col-12 primary">
       <b
@@ -255,33 +287,30 @@
         Ordering Gladiators</b
       >
     </h2>
-    <div class="col"></div>
+    <div class="col-md d-none d-md-block"></div>
   </div>
 
-  <div class="row text-container">
-    <div class="col"></div>
+  <!-- Ordering & Simulation -->
+  <div class="row section-simulation">
+    <div class="col-md d-none d-md-block"></div>
     <div class="col-lg-6 col-md-8">
-      <p>
-        Have a think about what strategy you might adopt to try and give
-        yourself an advantage in this game. For example, would it be wise to put
-        your strongest gladiator first?
-      </p>
-      <p>
-        Let's assume an equal game. You (Player A) have a set of gladiators with
-        levels
-        <ng-katex [equation]="kmathSimGlads" [options]="inlineMode"></ng-katex>.
-        Player B has an identical set of gladiators
-        <ng-katex [equation]="kmathSimGlads" [options]="inlineMode"></ng-katex>.
-        Have a go at checking a given order simulated over a large number of
-        games
-      </p>
-    </div>
-    <div class="col"></div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm"></div>
-    <div class="col-lg-6 col-md-8">
+      <div class="row">
+        <p>
+          Have a think about what strategy you might adopt to try and give
+          yourself an advantage in this game. For example, would it be wise to
+          put your strongest gladiator first?
+        </p>
+        <p>
+          Let's assume an equal game. You (Player A) have a set of gladiators
+          with levels
+          <ng-katex [equation]="kmathSimGlads" [options]="inlineMode"></ng-katex
+          >. Player B has an identical set of gladiators
+          <ng-katex [equation]="kmathSimGlads" [options]="inlineMode"></ng-katex
+          >. Have a go at checking a given order simulated over a large number
+          of games
+        </p>
+        <br />
+      </div>
       <div class="row first-game-container center-container">
         <div class="col-1"></div>
         <div class="col-4 center-container">
@@ -369,30 +398,32 @@
         <div class="col-lg-10 col-md-10">
           <div class="row center-container">
             <div class="col"></div>
-            <div class="col-lg-8 col-12 simulate-container">
+            <div class="col-lg-12 col-12 simulate-container">
               <br />
               <section id="simulation"></section>
-
+              <hr class="primary" />
+              <!-- <h2 class="primary"><b>Simulation</b></h2> -->
               <!-- <p><b>Simulate</b></p> -->
               <small>
-                Each simulation will stick to this order until a player loses
-                all gladatiors. Simulate the above order over
+                Simulate the above order over
                 <small class="primary">{{
                   simulateN | number: "1.0":"en-US"
                 }}</small>
-                full games.
+                full games. Each simulation will stick to this order until a
+                player loses all gladatiors.
               </small>
               <br />
-
-              <button
-                mat-raised-button
-                color="primary"
-                class="simulation-button"
-                (click)="initiateSimulation()"
-                *ngIf="!simulationStarted"
-              >
-                Simulate
-              </button>
+              <a href="gladiators#simulation">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="simulation-button"
+                  (click)="initiateSimulation()"
+                  *ngIf="!simulationStarted"
+                >
+                  Simulate
+                </button>
+              </a>
               <br />
               <div
                 class="spinner-grow primary"
@@ -417,34 +448,45 @@
                 ></highcharts-chart>
               </div>
             </div>
+
             <div class="col"></div>
           </div>
         </div>
       </div>
+
+      <div class="row section-simulation-conclusion" *ngIf="simulationFinished">
+        <div class="col">
+          <p>
+            As you can see in the above simulation, regardless of your ordering
+            strategy, the success of each player is always roughly the same at
+            ~50%. We see that the choice of strategy doesn't even matter!
+          </p>
+          <p>
+            The only factor that matters is the total level of your team
+            compared to your opposition.
+          </p>
+          <p>
+            The probability of player A winning is always equal to their total
+            strength level (A) as a proportion of the overall strength level
+            (A+B)
+          </p>
+        </div>
+      </div>
+
+      <div class="control-next" *ngIf="simulationFinished">
+        <br />
+        <a href="gladiators#proof" class="control-button">
+          <button matSuffix mat-icon-button aria-label="Clear" color="primary">
+            <small>Next</small>
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+        </a>
+      </div>
     </div>
-    <div class="col-sm"></div>
+    <div class="col-md d-none d-md-block"></div>
   </div>
 
-  <div class="row text-container">
-    <div class="col"></div>
-    <div class="col-lg-6 col-md-8">
-      <p>
-        As you can see in the above simulation, regardless of your ordering
-        strategy, the success of each player is always roughly the same at ~50%.
-        We see that the choice of strategy doesn't even matter!
-      </p>
-      <p>
-        The only factor that matters is the total level of your team compared to
-        your opposition.
-      </p>
-      <p>
-        The probability of player A winning is always equal to their total
-        strength level (A) as a proportion of the overall strength level (A+B)
-      </p>
-    </div>
-    <div class="col"></div>
-  </div>
-
+  <!-- Proof Title -->
   <div class="row center-container">
     <section id="proof"></section>
     <div class="col"></div>
@@ -458,6 +500,7 @@
     <div class="col"></div>
   </div>
 
+  <!-- Proof by Induction  -->
   <div class="row text-container">
     <div class="col"></div>
     <div class="col-lg-6 col-md-8">
@@ -493,10 +536,8 @@
       </div>
 
       <p>
-        Each player only has 1 choice for the gladiator to choose, so the winner
-        of the game is equal to this one and only fight. This shows, for the
-        smallest case, the chance of winning the game is equivalent to the
-        proportion of total strength levels.
+        Since there will only be 1 fight, it is obvious that the winner is
+        equivalent to the proportion of total strength levels for this scenario
       </p>
 
       <hr class="half-hr" />
@@ -565,7 +606,7 @@
 
       <div class="row">
         <div class="col-6">
-          <div>
+          <div class="outcome-container">
             <hr class="half-hr" />
 
             <h3 class="center-container">Outcome 1</h3>
@@ -576,12 +617,16 @@
             <p>This will produce the game state</p>
 
             <p>
-              Player A: n gladiators, total strength: A +
+              Player A: n gladiators
+              <br />
+              total strength: A +
               <ng-katex [equation]="b_y" [options]="inlineMode"></ng-katex>
             </p>
 
             <p>
-              Player B: m+1 gladiators, total strength: B -
+              Player B: m+1 gladiators
+              <br />
+              total strength: B -
               <ng-katex [equation]="b_y" [options]="inlineMode"></ng-katex>
             </p>
 
@@ -596,7 +641,7 @@
           </div>
         </div>
         <div class="col-6">
-          <div>
+          <div class="outcome-container">
             <hr class="half-hr" />
 
             <h3 class="center-container">Outcome 2</h3>
@@ -607,12 +652,18 @@
             <p>This will produce the game state</p>
 
             <p>
-              Player A: n-1 gladiators, total strength: A -
+              Player A: n-1 gladiators
+              <br />
+              total strength: A -
               <ng-katex [equation]="a_x" [options]="inlineMode"></ng-katex>
             </p>
 
+            <p></p>
+
             <p>
-              Player B: m+1 gladiators, total strength: B +
+              Player B: m+1 gladiators
+              <br />
+              total strength: B +
               <ng-katex [equation]="a_x" [options]="inlineMode"></ng-katex>
             </p>
 
@@ -629,6 +680,7 @@
       </div>
 
       <p>
+        <br />
         Putting these together we can work out the total chance of winning from
         the state of k+1 total gladiators.
       </p>
@@ -651,6 +703,21 @@
 
       By symmetry, we will also arrive at the same result if player A had
       started with the additional k+1th gladiator.
+
+      <br />
+      <div class="control-next">
+        <br />
+        <a href="gladiators#introduction" class="control-button">
+          <button matSuffix mat-icon-button aria-label="Clear" color="primary">
+            <small>Return</small>
+            <mat-icon>arrow_upward</mat-icon>
+          </button>
+        </a>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
     <div class="col"></div>
   </div>
