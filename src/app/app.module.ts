@@ -20,11 +20,13 @@ import { FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
+import { MartingaleComponent } from './pages/martingale/martingale.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'test', component: TestComponent },
   { path: 'gladiators', component: GladiatorsComponent },
+  { path: 'martingale', component: MartingaleComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
