@@ -311,7 +311,7 @@ highcharts-chart{
 }
 
 .section-introduction, .section-example-game, .section-simulation{
-  min-height: 100vh;
+  min-height: 120vh;
 }
 
 .section-simulation{
@@ -326,3 +326,8 @@ float: right;
   color: var(--color-text-equivalent);
   text-decoration: none;
 }
+
+.chapter-active{
+  color: var(--color-primary)
+}
+

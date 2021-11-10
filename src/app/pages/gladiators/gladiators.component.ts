@@ -95,9 +95,47 @@ export class GladiatorsComponent implements OnInit {
   kmath20 = `=\\frac{a_xA + b_yA}{(a_x+b_y)(A+B)}`;
   kmath21 = `=\\frac{A(a_x + b_y)}{(a_x+b_y)(A+B)}`;
   kmath22 = `=\\frac{A}{A+B}`;
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.handleViewIntersections();
+  }
+
+  handleViewIntersections() {
+    // select all the sections "bookmarks" you want to see whether or not they're in viewport
+    const sections = document.querySelectorAll('section');
+
+    // threshold 0->1, 1 = has to view the whole element
+    const observerOptions = {
+      root: null,
+      threshold: 0,
+    };
+
+    // for each section, if it's in view then ADD a class to the corresponding chapter element
+    const observer = new IntersectionObserver(function (entries, observer) {
+      entries.forEach((entry) => {
+        console.log(entry);
+        // eg. <section id="introduction"> => "introduction"
+        let id = entry.target.id;
+
+        // find the equivalent chapter element "introduction" => <li class="chapter-introduction">...</li>
+        let chapterSection = document.querySelector('.link-' + id);
+
+        // If it's intersection add the class, else remove it
+        if (entry.isIntersecting) {
+          chapterSection.classList.add('chapter-active');
+        } else {
+          chapterSection.classList.remove('chapter-active');
+        }
+      });
+    }, observerOptions);
+
+    // observe each section
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+  }
 
   initiateFightSequence() {
     if (this.firstGameFightStarted == true) {
@@ -353,3 +391,17 @@ export class GladiatorsComponent implements OnInit {
     }
   }
 }
+
+// const sectionOne = document.querySelector('.section-example-game');
+// const observerOptions = {
+//   root: null,
+//   threshold: 0,
+// };
+
+// const observer = new IntersectionObserver(function (entries, observer) {
+//   entries.forEach((entry) => {
+//     console.log(entry);
+//   });
+// }, observerOptions);
+
+// observer.observe(sectionOne);
