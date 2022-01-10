@@ -72,7 +72,8 @@ $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 $heading-font-family: "monospace";
 $custom-typography: mat-typography-config($font-family: 'Roboto Mono, Roboto, monospace, Courier New',
   $headline: mat-typography-level(32px, 48px, 700, $font-family: $heading-font-family),
-  $display-2: mat-typography-level(32px, 48px, 700, $font-family: $heading-font-family));
+  $display-2: mat-typography-level(32px, 48px, 700, $font-family: $heading-font-family),
+  $body-1: mat-typography-level(16px, 20px, 500, $font-family: $heading-font-family));
 // Override typography for all Angular Material, including mat-base-typography and all components.
 @include angular-material-typography($custom-typography);
 // ---------------------------------------------- // 

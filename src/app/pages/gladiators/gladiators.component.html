@@ -105,6 +105,9 @@
     </div>
   </section>
 
+  <br />
+  <br />
+
   <!-- Example Game  -->
   <section id="example-game">
     <!-- Example Game -->
@@ -123,16 +126,17 @@
             >
 
             <br />
-            <button
-              *ngIf="firstGameHidden"
-              mat-raised-button
-              color="primary"
-              class="start-first-button"
-              (click)="startFirstGame()"
-            >
-              Start
-            </button>
-
+            <a href="gladiators#example-game">
+              <button
+                *ngIf="firstGameHidden"
+                mat-raised-button
+                color="primary"
+                class="start-first-button"
+                (click)="startFirstGame()"
+              >
+                Start
+              </button>
+            </a>
             <button
               *ngIf="!firstGameHidden"
               mat-raised-button
@@ -736,6 +740,13 @@
         started with the additional k+1th gladiator.
 
         <br />
+        <br />
+        It's proven that the probability of player A winning is always equal to
+        their total strength level (A) as a proportion of the overall strength
+        level (A+B)
+
+        <br />
+
         <div class="control-next">
           <br />
           <a href="gladiators#introduction" class="control-button">

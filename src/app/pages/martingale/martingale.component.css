@@ -1,0 +1,43 @@
+  .primary {
+    color: var(--color-primary)
+  }
+  .accent {
+    color: var(--color-accent)
+  }
+  .success {
+    color: var(--color-success)
+  }
+  
+  
+  .center-container {
+    text-align: center;
+    justify-content: center;
+    position: relative;
+  }
+
+/* ----- For contents section ----- */
+  .sticky-container{
+    position: absolute;
+    height: 90%;
+  }
+  .sticky-top{
+    padding-top: 1rem;
+    padding-left: 1rem;
+    border-left: 1px  solid
+  }
+  @media screen and (max-width: 1024px) {
+    .sticky-container {
+        display: none !important;
+    }
+  }
+  .chapter-link > a{
+    color: inherit;
+  }
+  .chapter-link > a:hover{
+    color: var(--color-accent);
+  }
+  .top-container {
+    margin-top: 1rem;
+    text-align: center;
+  }
+/* ---------------------------------- */

@@ -6,6 +6,7 @@
 
 .content, .toolbar{
         background-color: var(--color-background);
+
 }
 
 /* Allows you to have sticky:top in child components */
@@ -13,6 +14,8 @@
         overflow: visible;
       
 }
+
+
 
 /* For smaller width screens, hide overflow to stop white border from right side creeping in */
 @media screen and (max-width: 1024px) {
@@ -22,6 +25,7 @@
 }
 
 
+    
     
 .spacer {
         flex: 1 1 auto;
@@ -33,3 +37,7 @@
         color: var(--color-primary)
 }
 
+mat-toolbar{
+        height: 32px;
+        padding-top: 3px;
+}

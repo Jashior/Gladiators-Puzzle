@@ -1,7 +1,7 @@
 <div class="main" [ngClass]="{ 'dark-theme': isDarkTheme }">
   <!-- Top Toolbar  -->
   <mat-toolbar class="toolbar">
-    <button mat-raised-button color="primary" routerLink="/home">Home</button>
+    <!-- <button mat-raised-button color="primary" routerLink="/home">Home</button> -->
     <span class="spacer"></span>
 
     <mat-slide-toggle
@@ -19,8 +19,7 @@
     [ngClass]="{ 'dark-theme': isDarkTheme }"
   >
     <mat-sidenav-content>
-      <mat-divider></mat-divider>
-
+      <!-- <mat-divider></mat-divider> -->
       <router-outlet> </router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

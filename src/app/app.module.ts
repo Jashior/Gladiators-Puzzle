@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { TestComponent } from './pages/test/test.component';
 import { GladiatorsComponent } from './pages/gladiators/gladiators.component';
+import { MartingaleComponent } from './pages/martingale/martingale.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -20,14 +21,13 @@ import { FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
-import { MartingaleComponent } from './pages/martingale/martingale.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'test', component: TestComponent },
   { path: 'gladiators', component: GladiatorsComponent },
   { path: 'martingale', component: MartingaleComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/gladiators', pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -36,6 +36,7 @@ const routes: Routes = [
     HomeComponent,
     TestComponent,
     GladiatorsComponent,
+    MartingaleComponent,
   ],
   imports: [
     BrowserModule,

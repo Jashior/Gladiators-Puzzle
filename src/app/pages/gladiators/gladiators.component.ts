@@ -115,7 +115,9 @@ export class GladiatorsComponent implements OnInit {
     // for each section, if it's in view then ADD a class to the corresponding chapter element
     const observer = new IntersectionObserver(function (entries, observer) {
       entries.forEach((entry) => {
-        console.log(entry);
+        if (entry == null) {
+          return;
+        }
         // eg. <section id="introduction"> => "introduction"
         let id = entry.target.id;
 
@@ -124,9 +126,13 @@ export class GladiatorsComponent implements OnInit {
 
         // If it's intersection add the class, else remove it
         if (entry.isIntersecting) {
-          chapterSection.classList.add('chapter-active');
+          if (chapterSection !== null) {
+            chapterSection.classList.add('chapter-active');
+          }
         } else {
-          chapterSection.classList.remove('chapter-active');
+          if (chapterSection !== null) {
+            chapterSection.classList.remove('chapter-active');
+          }
         }
       });
     }, observerOptions);
@@ -391,17 +397,3 @@ export class GladiatorsComponent implements OnInit {
     }
   }
 }
-
-// const sectionOne = document.querySelector('.section-example-game');
-// const observerOptions = {
-//   root: null,
-//   threshold: 0,
-// };
-
-// const observer = new IntersectionObserver(function (entries, observer) {
-//   entries.forEach((entry) => {
-//     console.log(entry);
-//   });
-// }, observerOptions);
-
-// observer.observe(sectionOne);

@@ -1,1 +1,102 @@
-<p>martingale works!</p>
+<div class="container">
+  <!-- Sticky contents page -->
+  <div class="row top-container">
+    <div class="col">
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-9">
+          <div class="sticky-container">
+            <div class="sticky-top">
+              <h3>Martingale</h3>
+              <ol>
+                <li class="chapter-link link-introduction">
+                  <a href="martingale#introduction">Introduction</a>
+                </li>
+                <li class="chapter-link link-example-game">
+                  <a href="martingale#example-game">Example Game</a>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6"></div>
+    <div class="col"></div>
+  </div>
+
+  <div>
+    <div class="row">
+      <div class="col-3"></div>
+      <!-- <div class="col-6 center-container"> CENTER IT HERE IF NEEDED -->
+      <div class="col-6">
+        <hr class="primary" />
+        <h1 class="primary">Martingale</h1>
+
+        <section id="introduction">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
+            non sequi, reiciendis hic debitis pariatur, inventore autem magnam
+            ipsa ratione veritatis dolore accusantium? Recusandae eveniet
+            tenetur ducimus quis commodi maiores?
+          </p>
+          <hr class="primary" />
+        </section>
+
+        <section id="example-game">
+          <h2 class="primary">Example Game</h2>
+
+          <div>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex quas,
+            repudiandae esse soluta animi repellat nobis delectus hic explicabo
+            reprehenderit officia inventore nesciunt iusto, rem aliquam error,
+            distinctio in eaque?
+          </div>
+
+          <div>
+            <br />
+            <button *ngIf="!eg_game_started" (click)="startegGame()">
+              Start game
+            </button>
+            <button *ngIf="eg_game_started" (click)="resetegGamble()">
+              Reset Game
+            </button>
+          </div>
+
+          <!-- Example Game -->
+          <div *ngIf="eg_game_started">
+            <br />
+            <button (click)="egGamble()">Gamble ${{ eg_bet_amount }}</button>
+            <h2>{{ eg_statement }}</h2>
+            <div>
+              Current balance = {{ eg_balance }} Bet amount =
+              {{ eg_bet_amount }}
+            </div>
+          </div>
+          <hr class="primary" />
+        </section>
+
+        <section id="simulation">
+          <h2 class="primary">Simulation</h2>
+
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
+            rem, quaerat optio modi aut ab exercitationem assumenda magnam?
+            Harum quidem tempora rerum dolorum ut odit, voluptas non saepe
+            recusandae iure!
+          </div>
+
+          <br />
+          <button (click)="simulateEg()">Simulate gamble</button>
+
+          <div>
+            Amount of gambles until $0: {{ simulated_eg_history.length }}
+            <br />
+            ${{ simulated_eg_history }}
+          </div>
+        </section>
+      </div>
+      <div class="col-3"></div>
+    </div>
+  </div>
+</div>
