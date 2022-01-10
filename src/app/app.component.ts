@@ -11,6 +11,7 @@ export class AppComponent {
   isDarkTheme: boolean = true;
 
   ngOnInit() {
+    this.isDarkTheme = true;
     this.isDarkTheme = localStorage.getItem('theme') == 'Light' ? false : true;
   }
 
